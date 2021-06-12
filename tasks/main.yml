@@ -11,6 +11,14 @@
         - '{{ role_path }}/vars'
 
 
+- name: "Install certutil"
+  ansible.builtin.apt:
+    name: libnss3-tools
+    state: present
+  become: true
+  when: mkcert_os == 'linux'
+
+
 - name: 'Check if {{ mkcert_exe }} is installed'
   stat:
     path: '{{ mkcert_exe }}'
