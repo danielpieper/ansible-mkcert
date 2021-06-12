@@ -33,9 +33,10 @@
       mode: 0755
 
   - name: 'Download {{ mkcert_url }} to {{ mkcert_exe }}'
-    get_url:
+    ansible.builtin.get_url:
       url: '{{ mkcert_url }}'
       dest: '{{ mkcert_exe }}'
+      mode: 0755
 
   when: mkcert_installed.stat.exists is false
 
